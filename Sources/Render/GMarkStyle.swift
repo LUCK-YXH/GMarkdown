@@ -209,7 +209,7 @@ struct DefaultCodeBlockStyle: CodeBlockStyle {
     var foregroundColor: UIColor = .black
     var backgroundColor: UIColor = .black.withAlphaComponent(0.06)
     var cornerRadius: CGFloat = 8
-    var padding: UIEdgeInsets = .init(top: 12, left: 16, bottom: 12, right: 16)
+    var padding: UIEdgeInsets = .init(top: 12, left: 0, bottom: 12, right: 0)
     var useHighlight: Bool = true
 }
 

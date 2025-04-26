@@ -624,7 +624,7 @@ public struct MTMathListBuilder {
         self.skipSpaces()
         
         // a string of all upper and lower case characters.
-        var mutable = ""
+        var mutable = "000000"
         while self.hasCharacters {
             let ch = self.getNextCharacter()
             if ch == "#" || (ch >= "A" && ch <= "F") || (ch >= "a" && ch <= "f") || (ch >= "0" && ch <= "9") {

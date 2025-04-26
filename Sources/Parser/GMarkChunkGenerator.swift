@@ -279,13 +279,14 @@ extension GMarkChunk {
         
     
         do {
-            let svgResult = try renderer.convert(trimText)
+            let new = trimText.replacingOccurrences(of: "$$", with: "")
+            let svgResult = try renderer.convert(new)
             // 使用渲染结果
             self.latexSvg = svgResult
             if let node = try? SVGParser.parse(text: svgResult),
                let nodeSize = node.bounds?.size().toCG() {
                 let imageSize = CGSize(width: nodeSize.width * 8, height: nodeSize.height * 8)
-                self.latexNode = node
+                latexNode = node
                 latexSize = imageSize
                 itemSize = CGSize(
                     width: style.maxContainerWidth,
@@ -316,12 +317,12 @@ extension GMarkChunk {
             latexImage = image
             itemSize = CGSize(width: style.maxContainerWidth, height: image.size.height + style.codeBlockStyle.padding.top + style.codeBlockStyle.padding.top)
         } else {
-            var visitor = GMarkupVisitor(style: style)
-            attributedText = visitor.visit(markup)
-            calculateLatexText()
-            updateHashKey()
-//            print("latex: generateLatexNormal error: \(trimText)")
-//            generateLatexWithSlow(markup: markup)
+//            var visitor = GMarkupVisitor(style: style)
+//            attributedText = visitor.visit(markup)
+//            calculateLatexText()
+//            updateHashKey()
+            print("latex: generateLatexNormal error: \(trimText)")
+            generateLatexWithSlow(markup: markup)
         }
     }
     
